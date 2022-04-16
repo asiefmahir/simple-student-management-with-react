@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import "./App.css";
+import Forms from "./components/Forms";
+import StudentSection from "./components/StudentSection";
 
 function App() {
+  const [studentName, setStudentName] = useState("");
+  const [students, setStudents] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editableStudent, setEditableStudent] = useState(null);
+
+  /**
+   * student = {
+   *    id,
+   *    name,
+   *    isPresent
+   * }
+   */
+
+  // app -> form
+
+  // app ->   -> studentSection -> allstudent
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Forms
+        editMode={editMode}
+        setEditMode={setEditMode}
+        editableStudent={editableStudent}
+        setEditableStudent={setEditableStudent}
+        studentName={studentName}
+        setStudentName={setStudentName}
+        students={students}
+        setStudents={setStudents}
+      />
+      <StudentSection
+        editMode={editMode}
+        setEditMode={setEditMode}
+        editableStudent={editableStudent}
+        setEditableStudent={setEditableStudent}
+        setStudentName={setStudentName}
+        students={students}
+        setStudents={setStudents}
+      />
     </div>
   );
 }
